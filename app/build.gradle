@@ -73,17 +73,38 @@ android {
       buildConfigField("String", "GA_TRACKING_ID", "\"UA-77698878-1\"")
     }
   }
+
+  packagingOptions {
+    exclude 'META-INF/services/javax.annotation.processing.Processor'
+    exclude 'META-INF/maven/com.google.auto/auto-common/pom.xml'
+    exclude 'META-INF/maven/com.google.auto/auto-common/pom.properties'
+    exclude 'META-INF/maven/com.google.auto.service/auto-service/pom.xml'
+    exclude 'META-INF/maven/com.google.auto.service/auto-service/pom.properties'
+    exclude 'META-INF/maven/com.google.guava/guava/pom.properties'
+    exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
+    exclude 'META-INF/DEPENDENCIES'
+    exclude 'META-INF/NOTICE'
+    exclude 'META-INF/LICENSE'
+    exclude 'META-INF/LICENSE.txt'
+    exclude 'META-INF/NOTICE.txt'
+  }
 }
 
 dependencies {
   // Google
   compile 'com.google.android.gms:play-services-base:8.4.0'
   compile 'com.google.android.gms:play-services-analytics:8.4.0'
+  compile 'com.google.android.gms:play-services-gcm:8.4.0'
+  compile 'com.growthbeat:growthbeat-android:1.2.6@aar'
 
   //DI
   compile 'com.google.dagger:dagger:2.2'
   apt 'com.google.dagger:dagger-compiler:2.2'
   provided 'javax.annotation:jsr250-api:1.0'
+
+  //Parcel
+  compile 'com.google.auto.value:auto-value:1.2-rc1'
+  compile 'com.ryanharter.auto.value:auto-value-parcel:0.2.0'
 
   compile 'com.android.support:appcompat-v7:23.3.0'
   compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {

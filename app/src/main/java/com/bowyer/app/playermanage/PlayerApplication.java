@@ -2,6 +2,7 @@ package com.bowyer.app.playermanage;
 
 import android.app.Application;
 import android.content.Context;
+import com.bowyer.app.playermanage.logic.GrowthbeatLogic;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 
@@ -15,6 +16,7 @@ public class PlayerApplication extends Application {
     }
     playerAppComponent = DaggerPlayerAppComponent.builder()
         .playerModule(new PlayerModule(this)).build();
+    GrowthbeatLogic.init(this);
   }
 
   public static PlayerAppComponent getComponent(Context context) {
