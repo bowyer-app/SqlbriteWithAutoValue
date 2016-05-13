@@ -1,0 +1,24 @@
+<resources>
+
+  <!-- PlayerManage-->
+  <string name="title_player_manage">選手管理</string>
+  <string name="hint_first_name">名前</string>
+  <string name="hint_last_name">苗字</string>
+  <string name="hint_first_name_phonetic">名前（ふりがな）</string>
+  <string name="hint_last_name_phonetic">苗字（ふりがな）</string>
+  <string name="hint_memo">メモ</string>
+  <string name="player_save">保存</string>
+  <string name="message_need_first_name">苗字は必須です</string>
+
+  <!-- Player-->
+  <string name="player_title">性別</string>
+  <string name="player_all">すべて</string>
+  <string name="player_male">男子</string>
+  <string name="player_female">女子</string>
+  <string name="player_rank">段位</string>
+  <string name="player_no_rank">なし</string>
+  <string name="title_player_rank_select">段位選択</string>
+  <string name="player_rank_select_cancel">キャンセル</string>
+  <string name="player_rank_all">すべて</string>
+
+</resources>
