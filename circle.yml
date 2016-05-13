@@ -8,7 +8,7 @@ machine:
 dependencies:
   override:
     - echo y | android update sdk --no-ui --all --filter "platform-tools, tools"
-    - echo y | android update sdk --no-ui --all --filter "android-23, build-tools-23.0.2"
+    - echo y | android update sdk --no-ui --all --filter "android-23, build-tools-23.0.3"
     - echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"
     - echo y | android update sdk --no-ui --all --filter "extra-google-m2repository"
     - echo y | android update sdk --no-ui --all --filter "extra-android-support"
