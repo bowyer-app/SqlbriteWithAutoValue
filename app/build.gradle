@@ -1,4 +1,19 @@
+buildscript {
+  repositories {
+    maven { url 'https://maven.fabric.io/public' }
+  }
+
+  dependencies {
+    classpath 'io.fabric.tools:gradle:1.+'
+  }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+  maven { url 'https://maven.fabric.io/public' }
+}
+
 
 android {
   compileSdkVersion 23
@@ -11,10 +26,47 @@ android {
     versionCode 1
     versionName "1.0"
   }
+
+  signingConfigs {
+    develop {
+      storeFile file('../develop.keystore')
+      storePassword System.getenv('DVELOP_STORE_PASSWORD')
+      keyAlias System.getenv('DEVELOP_KEY_ALIAS')
+      keyPassword System.getenv('DEVELOP_KEY_PASSWORD')
+    }
+    release {
+      storeFile file('../release.keystore')
+      storePassword System.getenv('STORE_PASSWORD')
+      keyAlias System.getenv('KEY_ALIAS')
+      keyPassword System.getenv('KEY_PASSWORD')
+    }
+  }
+
   buildTypes {
+    debug {
+      applicationIdSuffix ".debug"
+      ext.enableCrashlytics = false
+    }
+
+    develop {
+      applicationIdSuffix ".develop"
+      zipAlignEnabled true
+      debuggable true
+      signingConfig signingConfigs.develop
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+      def releaseNotes = 'git log --pretty=format:"%s" --since "yesterday"'.execute([],
+          project.rootDir).text.trim()
+      ext {
+        betaDistributionGroupAliases = "beta_tester"
+        betaDistributionReleaseNotes = releaseNotes
+      }
+    }
+
     release {
       minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      zipAlignEnabled true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+      signingConfig signingConfigs.release
     }
   }
 }
@@ -23,4 +75,7 @@ dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
   testCompile 'junit:junit:4.12'
   compile 'com.android.support:appcompat-v7:23.3.0'
+  compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+    transitive = true;
+  }
 }
