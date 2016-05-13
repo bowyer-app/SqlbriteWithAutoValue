@@ -8,4 +8,21 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
+  <style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+  </style>
+
+  <style name="PlayerEditText">
+    <item name="android:textColor">@color/black</item>
+    <item name="android:gravity">center_vertical</item>
+    <item name="android:layout_margin">4dp</item>
+    <item name="android:singleLine">true</item>
+  </style>
+
+  <style name="PlayerEditText.Memo">
+    <item name="android:gravity">top</item>
+    <item name="android:singleLine">false</item>
+  </style>
+
 </resources>

@@ -1,3 +1,25 @@
 <resources>
   <string name="app_name">PlayerManage</string>
+
+  <!-- PlayerManage-->
+  <string name="title_player_manage">PlayerManagement</string>
+  <string name="hint_first_name">FirstName</string>
+  <string name="hint_last_name">LastName</string>
+  <string name="hint_first_name_phonetic">FirstNamePhonetic</string>
+  <string name="hint_last_name_phonetic">LastNamePhonetic</string>
+  <string name="hint_memo">memo</string>
+  <string name="player_save">Save</string>
+  <string name="message_need_first_name">Last name is required</string>
+
+  <!-- Player-->
+  <string name="player_title">Sex</string>
+  <string name="player_all">All</string>
+  <string name="player_male">Male</string>
+  <string name="player_female">Female</string>
+  <string name="player_rank">Rank</string>
+  <string name="player_no_rank">No Rank</string>
+  <string name="title_player_rank_select">Rank Select</string>
+  <string name="player_rank_select_cancel">Cancel</string>
+  <string name="player_rank_all">All</string>
+
 </resources>

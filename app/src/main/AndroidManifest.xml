@@ -29,6 +29,10 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
+    <activity
+        android:name=".ui.activity.PlayerManageActivity"
+        android:theme="@style/AppTheme.NoActionBar"/>
+
     <meta-data
         android:name="io.fabric.ApiKey"
         android:value="fd468741ae1b6b1421dbf1ae93231c7f66bc467b"/>
