@@ -8,6 +8,7 @@ buildscript {
   }
 }
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'io.fabric'
 apply plugin: 'android-apt'
 
@@ -74,6 +75,12 @@ android {
     }
   }
 
+  compileOptions {
+    encoding = 'UTF-8'
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
   packagingOptions {
     exclude 'META-INF/services/javax.annotation.processing.Processor'
     exclude 'META-INF/maven/com.google.auto/auto-common/pom.xml'
@@ -91,6 +98,10 @@ android {
 }
 
 dependencies {
+  // Google Support
+  compile 'com.android.support:appcompat-v7:23.3.0'
+  compile 'com.android.support:support-v4:23.1.1'
+
   // Google
   compile 'com.google.android.gms:play-services-base:8.4.0'
   compile 'com.google.android.gms:play-services-analytics:8.4.0'
@@ -102,11 +113,24 @@ dependencies {
   apt 'com.google.dagger:dagger-compiler:2.2'
   provided 'javax.annotation:jsr250-api:1.0'
 
+  //Injection
+  compile 'com.jakewharton:butterknife:7.0.1'
+
+  //DB
+  compile 'com.squareup.sqlbrite:sqlbrite:0.6.3'
+
   //Parcel
   compile 'com.google.auto.value:auto-value:1.2-rc1'
   compile 'com.ryanharter.auto.value:auto-value-parcel:0.2.0'
 
-  compile 'com.android.support:appcompat-v7:23.3.0'
+  //Rx
+  compile 'io.reactivex:rxjava:1.1.5'
+  compile 'io.reactivex:rxandroid:1.2.0'
+  compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+
+  //Lambda
+  retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.3.0'
+
   compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
     transitive = true;
   }
