@@ -116,6 +116,9 @@ dependencies {
   //Injection
   compile 'com.jakewharton:butterknife:7.0.1'
 
+  //Log
+  compile 'com.jakewharton.timber:timber:2.7.1'
+
   //DB
   compile 'com.squareup.sqlbrite:sqlbrite:0.6.3'
 
