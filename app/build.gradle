@@ -29,6 +29,10 @@ android {
     versionName "1.0"
   }
 
+  lintOptions {
+    checkReleaseBuilds false;
+  }
+
   signingConfigs {
     develop {
       storeFile file('../develop.keystore')
