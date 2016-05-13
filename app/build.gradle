@@ -101,6 +101,8 @@ dependencies {
   // Google Support
   compile 'com.android.support:appcompat-v7:23.3.0'
   compile 'com.android.support:support-v4:23.1.1'
+  compile 'com.android.support:recyclerview-v7:23.1.1'
+  compile 'com.android.support:design:23.1.1'
 
   // Google
   compile 'com.google.android.gms:play-services-base:8.4.0'
@@ -115,6 +117,10 @@ dependencies {
 
   //Injection
   compile 'com.jakewharton:butterknife:7.0.1'
+
+  // UI
+  compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
+  compile 'com.github.aakira:expandable-layout:1.5.1@aar'
 
   //Log
   compile 'com.jakewharton.timber:timber:2.7.1'

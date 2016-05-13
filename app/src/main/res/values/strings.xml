@@ -22,4 +22,8 @@
   <string name="player_rank_select_cancel">Cancel</string>
   <string name="player_rank_all">All</string>
 
+  <!--PlayerSearch-->
+  <string name="search_tool">Search tool</string>
+  <string name="player_search_hint">Player Search</string>
+
 </resources>

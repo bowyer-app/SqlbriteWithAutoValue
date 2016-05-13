@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#3F51B5</color>
-  <color name="colorPrimaryDark">#303F9F</color>
+  <color name="colorPrimary">#1c496b</color>
+  <color name="colorPrimaryDark">#133345</color>
   <color name="colorAccent">#FF4081</color>
   <color name="black">#000</color>
+  <color name="male_bg">#1565C0</color>
+  <color name="female_bg">#F50057</color>
   <color name="white_pressed">#f1f1f1</color>
   <color name="white_ripple">#ffd6d6d6</color>
   <color name="white">#fff</color>
@@ -13,4 +15,7 @@
   <color name="app_transparent">#00FFFFFF</color>
   <color name="app_transparent_dark_pressed">#4d000000</color>
   <color name="app_transparent_dark_ripple">#60000000</color>
+  <color name="text_hint_gray">#90afafaf</color>
+  <color name="divider_white">#0Cffffff</color>
+
 </resources>
