@@ -15,15 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.bowyer.app.playermanage.AnalyticsTracker;
 import com.bowyer.app.playermanage.PlayerApplication;
 import com.bowyer.app.playermanage.R;
 import com.bowyer.app.playermanage.database.dto.Player;
 import com.bowyer.app.playermanage.database.dto.Sex;
+import com.bowyer.app.playermanage.ui.dialog.RankSelectDialogFragment;
 import com.squareup.sqlbrite.BriteDatabase;
 import javax.inject.Inject;
 
-public class PlayerManageActivity extends AppCompatActivity {
+public class PlayerManageActivity extends AppCompatActivity implements RankSelectDialogFragment.OnRankSelectListener{
 
   public static final String KEY_PLAYER = "key_player";
 
@@ -121,6 +123,10 @@ public class PlayerManageActivity extends AppCompatActivity {
     }
   }
 
+  @OnClick(R.id.rank) void onClickRank() {
+    RankSelectDialogFragment.newInstance().show(getSupportFragmentManager(), "");
+  }
+
   private void updatePlayer() {
     int sex = mMaleRadioButton.isChecked() ? Sex.MALE.getSex() : Sex.FEMALE.getSex();
     mDb.update(Player.TABLE, new Player.Builder().firstName(mFirstName.getText().toString())
@@ -145,5 +151,13 @@ public class PlayerManageActivity extends AppCompatActivity {
         .rank(mRankText.getText().toString())
         .build());
     finish();
+  }
+
+  @Override public void onRankSelect(String rank) {
+    if (!TextUtils.isEmpty(rank)) {
+      mRankText.setText(rank);
+    } else {
+      mRankText.setText(getString(R.string.player_no_rank));
+    }
   }
 }

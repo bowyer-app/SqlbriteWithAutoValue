@@ -29,6 +29,7 @@ import com.bowyer.app.playermanage.logic.GrowthPushLogic;
 import com.bowyer.app.playermanage.logic.GrowthbeatLogic;
 import com.bowyer.app.playermanage.ui.activity.PlayerManageActivity;
 import com.bowyer.app.playermanage.ui.adapter.PlayerAdapter;
+import com.bowyer.app.playermanage.ui.dialog.RankSelectDialogFragment;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
@@ -39,7 +40,8 @@ import javax.inject.Inject;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 
-public class MainActivity extends AppCompatActivity implements ObservableScrollViewCallbacks {
+public class MainActivity extends AppCompatActivity
+    implements ObservableScrollViewCallbacks, RankSelectDialogFragment.OnRankSelectListener {
 
   @Inject BriteDatabase mDb;
   @Inject AnalyticsTracker mAnalyticsTracker;
@@ -209,10 +211,10 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
   }
 
   @OnClick(R.id.rank) void onClickRank() {
-    //RankSelectDialogFragment.newInstance().show(getChildFragmentManager(), "");
+    RankSelectDialogFragment.newInstance().show(getSupportFragmentManager(), "");
   }
 
-  public void onRankSelect(String rank) {
+  @Override public void onRankSelect(String rank) {
     if (!TextUtils.isEmpty(rank)) {
       mRankText.setText(rank);
     } else {
