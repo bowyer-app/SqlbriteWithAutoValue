@@ -1,0 +1,25 @@
+machine:
+  timezone: Asia/Tokyo
+  java:
+    version: oraclejdk8
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+
+dependencies:
+  override:
+    - echo y | android update sdk --no-ui --all --filter "platform-tools, tools"
+    - echo y | android update sdk --no-ui --all --filter "android-23, build-tools-23.0.2"
+    - echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"
+    - echo y | android update sdk --no-ui --all --filter "extra-google-m2repository"
+    - echo y | android update sdk --no-ui --all --filter "extra-android-support"
+
+test:
+  override:
+    - echo "Nothing to do here"
+
+deployment:
+  apk:
+      branch: /^(hotfix|release|develop).*/
+      commands:
+        - ./gradlew assembleDevelop assembleRelease crashlyticsUploadDistributionDevelop -PpreDexEnable=false -Pcom.android.build.threadPoolSize=1 -Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xms512m -Xmx512m" -Dorg.gradle.daemon=false
+        - cp -R ./app/build/outputs/apk/*.apk $CIRCLE_ARTIFACTS
