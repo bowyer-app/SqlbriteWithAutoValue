@@ -32,6 +32,7 @@ import com.bowyer.app.playermanage.database.dto.Sex;
 import com.bowyer.app.playermanage.gcm.GrowthPush;
 import com.bowyer.app.playermanage.logic.GrowthPushLogic;
 import com.bowyer.app.playermanage.logic.GrowthbeatLogic;
+import com.bowyer.app.playermanage.logic.ReviewLogic;
 import com.bowyer.app.playermanage.ui.adapter.PlayerAdapter;
 import com.bowyer.app.playermanage.ui.dialog.RankSelectDialogFragment;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity
   @Override protected void onResume() {
     super.onResume();
     doSearch();
+    ReviewLogic.showReviewDialogIfNeed(this);
   }
 
   @Override protected void onStart() {

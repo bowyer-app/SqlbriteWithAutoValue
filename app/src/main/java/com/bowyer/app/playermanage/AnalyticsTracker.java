@@ -34,7 +34,9 @@ public class AnalyticsTracker {
 
   public enum Category {
 
-    DEFAULT("default");
+    DEFAULT("default"),
+    REVIEW("review"),
+    GOOGLE_PLUS("google_plus");
     String categoty;
 
     Category(String categoty) {
@@ -52,7 +54,13 @@ public class AnalyticsTracker {
     SEARCH_PLAYER_TAP("search-player-tap"),
     EXPAND_SEARCH_PLAYER("expand-search-player"),
     PLAYER_SEX_TAP("player-sex-tap"),
-    PLAYER_SAVE("player-save");
+    PLAYER_SAVE("player-save"),
+    REVIEW_SHOW("review-show"),
+    REVIEW_OK("review-ok"),
+    REVIEW_CANCEL("review-cancel"),
+    REVIEW_QUESTIONATE("review-questionate"),
+    GOOGLE_PLUS_SHOW("google-plus-show"),
+    GOOGLE_PLUS_CANCEL("google-plus-cancel");
     String action;
 
     Action(String action) {

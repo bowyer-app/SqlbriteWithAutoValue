@@ -28,4 +28,15 @@
   <!--License-->
   <string name="title_app_license">ライセンス</string>
 
+  <!--GooglePlus-->
+  <string name="google_plus_dialog_title">+1でアプリを応援</string>
+  <string name="google_plus_dialog_message">アプリを気に入って頂いた方は、応援よろしくお願いします</string>
+
+  <!-- レビュー訴求-->
+  <string name="review_dialog_title">レビューにご協力お願いします</string>
+  <string name="review_dialog_text">いつもご利用ありがとうございます。\nよろしければ励ましのレビューをお寄せください。</string>
+  <string name="review_dialog_review">レビューする</string>
+  <string name="review_dialog_demand">要望を書く</string>
+  <string name="review_dialog_cancel">いいえ</string>
+
 </resources>
