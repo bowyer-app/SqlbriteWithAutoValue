@@ -70,7 +70,7 @@ public class GrowthPushReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setTicker(title);
-        builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setSmallIcon(R.drawable.ic_notification);
         builder.setContentText(message);
         builder.setContentTitle(title);
         builder.setContentIntent(pendingIntent);
