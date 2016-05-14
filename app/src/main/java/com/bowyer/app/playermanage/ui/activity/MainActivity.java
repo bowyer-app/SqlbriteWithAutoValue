@@ -1,4 +1,4 @@
-package com.bowyer.app.playermanage;
+package com.bowyer.app.playermanage.ui.activity;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
@@ -21,13 +21,15 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.bowyer.app.playermanage.AnalyticsTracker;
+import com.bowyer.app.playermanage.PlayerApplication;
+import com.bowyer.app.playermanage.R;
 import com.bowyer.app.playermanage.database.dao.PlayerDao;
 import com.bowyer.app.playermanage.database.dto.Player;
 import com.bowyer.app.playermanage.database.dto.Rank;
 import com.bowyer.app.playermanage.database.dto.Sex;
 import com.bowyer.app.playermanage.logic.GrowthPushLogic;
 import com.bowyer.app.playermanage.logic.GrowthbeatLogic;
-import com.bowyer.app.playermanage.ui.activity.PlayerManageActivity;
 import com.bowyer.app.playermanage.ui.adapter.PlayerAdapter;
 import com.bowyer.app.playermanage.ui.dialog.RankSelectDialogFragment;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
@@ -212,6 +214,10 @@ public class MainActivity extends AppCompatActivity
 
   @OnClick(R.id.rank) void onClickRank() {
     RankSelectDialogFragment.newInstance().show(getSupportFragmentManager(), "");
+  }
+
+  @OnClick(R.id.setting) void onClickSetting() {
+    LicenseActivity.startActivity(this);
   }
 
   @Override public void onRankSelect(String rank) {
