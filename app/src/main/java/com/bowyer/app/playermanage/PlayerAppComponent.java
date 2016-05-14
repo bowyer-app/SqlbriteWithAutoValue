@@ -4,6 +4,8 @@ import com.bowyer.app.playermanage.ui.activity.LicenseActivity;
 import com.bowyer.app.playermanage.ui.activity.MainActivity;
 import com.bowyer.app.playermanage.ui.activity.PlayerManageActivity;
 import com.bowyer.app.playermanage.ui.activity.WebViewActivity;
+import com.bowyer.app.playermanage.ui.dialog.GooglePlusDialogFragment;
+import com.bowyer.app.playermanage.ui.dialog.ReviewDialogFragment;
 import dagger.Component;
 import javax.inject.Singleton;
 
@@ -16,4 +18,8 @@ import javax.inject.Singleton;
   void inject(LicenseActivity activity);
 
   void inject(WebViewActivity activity);
+
+  void inject(GooglePlusDialogFragment dialogFragment);
+
+  void inject(ReviewDialogFragment dialogFragment);
 }

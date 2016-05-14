@@ -112,6 +112,7 @@ dependencies {
   compile 'com.google.android.gms:play-services-base:8.4.0'
   compile 'com.google.android.gms:play-services-analytics:8.4.0'
   compile 'com.google.android.gms:play-services-gcm:8.4.0'
+  compile 'com.google.android.gms:play-services-plus:8.4.0'
   compile 'com.growthbeat:growthbeat-android:1.2.6@aar'
 
   //DI

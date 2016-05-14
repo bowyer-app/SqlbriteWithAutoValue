@@ -21,11 +21,13 @@ import com.bowyer.app.playermanage.PlayerApplication;
 import com.bowyer.app.playermanage.R;
 import com.bowyer.app.playermanage.database.dto.Player;
 import com.bowyer.app.playermanage.database.dto.Sex;
+import com.bowyer.app.playermanage.preference.ReviewPreferences;
 import com.bowyer.app.playermanage.ui.dialog.RankSelectDialogFragment;
 import com.squareup.sqlbrite.BriteDatabase;
 import javax.inject.Inject;
 
-public class PlayerManageActivity extends AppCompatActivity implements RankSelectDialogFragment.OnRankSelectListener{
+public class PlayerManageActivity extends AppCompatActivity
+    implements RankSelectDialogFragment.OnRankSelectListener {
 
   public static final String KEY_PLAYER = "key_player";
 
@@ -151,6 +153,7 @@ public class PlayerManageActivity extends AppCompatActivity implements RankSelec
         .rank(mRankText.getText().toString())
         .build());
     finish();
+    new ReviewPreferences(this).increasePlayerSaveCount();
   }
 
   @Override public void onRankSelect(String rank) {

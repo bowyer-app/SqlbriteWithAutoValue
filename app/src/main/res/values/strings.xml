@@ -29,4 +29,14 @@
   <!--License-->
   <string name="title_app_license">License</string>
 
+  <!--GooglePlus-->
+  <string name="google_plus_dialog_title">To support an app +1</string>
+  <string name="google_plus_dialog_message">If you like the app , and then cheer ask.</string>
+
+  <!-- Review-->
+  <string name="review_dialog_title">Please Review</string>
+  <string name="review_dialog_text">As Always,thank you for your use.\nIf I ask you are satisfied if support of review.</string>
+  <string name="review_dialog_review">Review</string>
+  <string name="review_dialog_demand">Write a demand</string>
+  <string name="review_dialog_cancel">No</string>
 </resources>
