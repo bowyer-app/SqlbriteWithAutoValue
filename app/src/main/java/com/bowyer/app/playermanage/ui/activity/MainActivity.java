@@ -3,6 +3,7 @@ package com.bowyer.app.playermanage.ui.activity;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
@@ -28,6 +29,7 @@ import com.bowyer.app.playermanage.database.dao.PlayerDao;
 import com.bowyer.app.playermanage.database.dto.Player;
 import com.bowyer.app.playermanage.database.dto.Rank;
 import com.bowyer.app.playermanage.database.dto.Sex;
+import com.bowyer.app.playermanage.gcm.GrowthPush;
 import com.bowyer.app.playermanage.logic.GrowthPushLogic;
 import com.bowyer.app.playermanage.logic.GrowthbeatLogic;
 import com.bowyer.app.playermanage.ui.adapter.PlayerAdapter;
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity
     ButterKnife.bind(this);
     PlayerApplication.getComponent(getApplicationContext()).inject(this);
     GrowthPushLogic.initGrowthPushSetting(this, getIntent());
-
+    launchWebIfHasGrowthPush();
     initRecyclerView();
     initSearchQuery();
     mSexGroup.setOnCheckedChangeListener((radioGroup, i) -> {
@@ -100,6 +102,17 @@ public class MainActivity extends AppCompatActivity
     }
     mSubscription.unsubscribe();
     ButterKnife.unbind(this);
+  }
+
+  private void launchWebIfHasGrowthPush() {
+    Intent intent = getIntent();
+    if (intent.hasExtra(GrowthPush.KEY_GROWTH_PUSH)) {
+      GrowthPush growthPush = intent.getParcelableExtra(GrowthPush.KEY_GROWTH_PUSH);
+      String url = growthPush.url();
+      if (!TextUtils.isEmpty(url)) {
+        WebViewActivity.startWebViewActivity(this, url);
+      }
+    }
   }
 
   private void initRecyclerView() {
