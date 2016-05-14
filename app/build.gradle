@@ -141,6 +141,9 @@ dependencies {
   compile 'io.reactivex:rxandroid:1.2.0'
   compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
 
+  //License
+  compile 'net.yslibrary.licenseadapter:licenseadapter:1.2.1'
+
   //Lambda
   retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.3.0'
 

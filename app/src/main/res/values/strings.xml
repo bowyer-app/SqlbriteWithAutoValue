@@ -26,4 +26,7 @@
   <string name="search_tool">Search tool</string>
   <string name="player_search_hint">Player Search</string>
 
+  <!--License-->
+  <string name="title_app_license">License</string>
+
 </resources>

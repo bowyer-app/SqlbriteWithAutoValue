@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
-import com.bowyer.app.playermanage.MainActivity;
+import com.bowyer.app.playermanage.ui.activity.MainActivity;
 import com.bowyer.app.playermanage.R;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import org.xml.sax.helpers.DefaultHandler;

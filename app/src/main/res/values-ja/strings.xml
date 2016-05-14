@@ -25,4 +25,7 @@
   <string name="search_tool">検索ツール</string>
   <string name="player_search_hint">選手検索</string>
 
+  <!--License-->
+  <string name="title_app_license">ライセンス</string>
+
 </resources>
