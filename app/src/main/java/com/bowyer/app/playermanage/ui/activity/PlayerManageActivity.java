@@ -131,7 +131,7 @@ public class PlayerManageActivity extends AppCompatActivity
 
   private void updatePlayer() {
     int sex = mMaleRadioButton.isChecked() ? Sex.MALE.getSex() : Sex.FEMALE.getSex();
-    mDb.update(Player.TABLE, new Player.Builder().firstName(mFirstName.getText().toString())
+    mDb.update(Player.TABLE, new Player.ContentsBuilder().firstName(mFirstName.getText().toString())
         .lastName(mLastName.getText().toString())
         .firstNamePhonetic(mFirstNamePhonetic.getText().toString())
         .lastNamePhonetic(mLastNamePhonetic.getText().toString())
@@ -144,7 +144,7 @@ public class PlayerManageActivity extends AppCompatActivity
 
   private void insertPlayer() {
     int sex = mMaleRadioButton.isChecked() ? Sex.MALE.getSex() : Sex.FEMALE.getSex();
-    mDb.insert(Player.TABLE, new Player.Builder().firstName(mFirstName.getText().toString())
+    mDb.insert(Player.TABLE, new Player.ContentsBuilder().firstName(mFirstName.getText().toString())
         .lastName(mLastName.getText().toString())
         .firstNamePhonetic(mFirstNamePhonetic.getText().toString())
         .lastNamePhonetic(mLastNamePhonetic.getText().toString())
