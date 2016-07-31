@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
-import com.bowyer.app.playermanage.database.Db;
+import com.gabrielittner.auto.value.cursor.ColumnName;
 import com.google.auto.value.AutoValue;
 import rx.functions.Func1;
 
@@ -20,15 +20,15 @@ import rx.functions.Func1;
   public static final String MEMO = "memo";
   public static final String RANK = "rank";
 
-  public abstract long id();
+  @ColumnName(ID) public abstract long id();
 
-  @Nullable public abstract String firstName();
+  @Nullable @ColumnName(FIRST_NAME) public abstract String firstName();
 
-  @Nullable public abstract String lastName();
+  @Nullable @ColumnName(LAST_NAME) public abstract String lastName();
 
-  @Nullable public abstract String firstNamePhonetic();
+  @Nullable @ColumnName(FIRST_NAME_PHONETIC) public abstract String firstNamePhonetic();
 
-  @Nullable public abstract String lastNamePhonetic();
+  @Nullable @ColumnName(LAST_NAME_PHONETIC) public abstract String lastNamePhonetic();
 
   public abstract int sex();
 
@@ -36,18 +36,9 @@ import rx.functions.Func1;
 
   @Nullable public abstract String rank();
 
-  public static final Func1<Cursor, Player> MAPPER = cursor -> {
-    long id = Db.getLong(cursor, ID);
-    String firstName = Db.getString(cursor, FIRST_NAME);
-    String lastName = Db.getString(cursor, LAST_NAME);
-    String firstNamePhonetic = Db.getString(cursor, FIRST_NAME_PHONETIC);
-    String lastNamePhonetic = Db.getString(cursor, LAST_NAME_PHONETIC);
-    int sex = Db.getInt(cursor, SEX);
-    String memo = Db.getString(cursor, MEMO);
-    String rank = Db.getString(cursor, RANK);
-    return new AutoValue_Player(id, firstName, lastName, firstNamePhonetic, lastNamePhonetic, sex,
-        memo, rank);
-  };
+  public static Func1<Cursor, Player> mapper() {
+    return AutoValue_Player.MAPPER;
+  }
 
   public static final class ContentsBuilder {
     private final ContentValues values = new ContentValues();

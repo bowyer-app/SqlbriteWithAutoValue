@@ -15,12 +15,12 @@ public class PlayerDao {
       "SELECT * FROM " + Player.TABLE + " WHERE " + Player.ID + " = ? ";
 
   public static Observable<Player> getPlayerById(BriteDatabase database, String playerId) {
-    return database.createQuery(Player.TABLE, SELECT_BY_ID, playerId).mapToOne(Player.MAPPER);
+    return database.createQuery(Player.TABLE, SELECT_BY_ID, playerId).mapToOne(Player.mapper());
   }
 
   public static Observable<List<Player>> getPlayersByQuery(BriteDatabase database,
       PlayerQuery query) {
-    return database.createQuery(Player.TABLE, query.sql, query.values).mapToList(Player.MAPPER);
+    return database.createQuery(Player.TABLE, query.sql, query.values).mapToList(Player.mapper());
   }
 
   public static final class SQLBuilder {
