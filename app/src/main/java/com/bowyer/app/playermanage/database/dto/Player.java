@@ -3,6 +3,7 @@ package com.bowyer.app.playermanage.database.dto;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import com.bowyer.app.playermanage.database.Db;
 import com.google.auto.value.AutoValue;
 import rx.functions.Func1;
@@ -21,19 +22,19 @@ import rx.functions.Func1;
 
   public abstract long id();
 
-  public abstract String firstName();
+  @Nullable public abstract String firstName();
 
-  public abstract String lastName();
+  @Nullable public abstract String lastName();
 
-  public abstract String firstNamePhonetic();
+  @Nullable public abstract String firstNamePhonetic();
 
-  public abstract String lastNamePhonetic();
+  @Nullable public abstract String lastNamePhonetic();
 
   public abstract int sex();
 
-  public abstract String memo();
+  @Nullable public abstract String memo();
 
-  public abstract String rank();
+  @Nullable public abstract String rank();
 
   public static final Func1<Cursor, Player> MAPPER = cursor -> {
     long id = Db.getLong(cursor, ID);

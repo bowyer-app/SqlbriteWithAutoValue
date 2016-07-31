@@ -16,22 +16,13 @@
 package com.bowyer.app.playermanage.database;
 
 import android.database.Cursor;
-import android.text.TextUtils;
 
 public final class Db {
   public static final int BOOLEAN_FALSE = 0;
   public static final int BOOLEAN_TRUE = 1;
-  public static final String EMPTY_STRING = "";
 
   public static String getString(Cursor cursor, String columnName) {
-    return getString(cursor.getString(cursor.getColumnIndexOrThrow(columnName)));
-  }
-
-  public static String getString(String string) {
-    if (TextUtils.isEmpty(string)) {
-      return EMPTY_STRING;
-    }
-    return string;
+    return cursor.getString(cursor.getColumnIndexOrThrow(columnName));
   }
 
   public static boolean getBoolean(Cursor cursor, String columnName) {
