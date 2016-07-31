@@ -5,7 +5,6 @@ import com.bowyer.app.playermanage.database.dto.Player;
 import com.bowyer.app.playermanage.database.dto.Rank;
 import com.bowyer.app.playermanage.database.dto.Sex;
 import com.squareup.sqlbrite.BriteDatabase;
-import com.squareup.sqlbrite.QueryObservable;
 import java.util.ArrayList;
 import java.util.List;
 import rx.Observable;
@@ -19,13 +18,18 @@ public class PlayerDao {
     return database.createQuery(Player.TABLE, SELECT_BY_ID, playerId).mapToOne(Player.MAPPER);
   }
 
-  public static QueryObservable getPlayerByQuery(BriteDatabase database, PlayerQuery query) {
-    return database.createQuery(Player.TABLE, query.sql, query.values);
+  public static Observable<List<Player>> getPlayersByQuery(BriteDatabase database,
+      PlayerQuery query) {
+    return database.createQuery(Player.TABLE, query.sql, query.values).mapToList(Player.MAPPER);
   }
 
   public static final class SQLBuilder {
     private String sql = "SELECT * FROM " + Player.TABLE + " WHERE ";
     private final List<String> values = new ArrayList<>();
+
+    public static SQLBuilder with() {
+      return new SQLBuilder();
+    }
 
     private String getAndSql() {
       if (!values.isEmpty()) {

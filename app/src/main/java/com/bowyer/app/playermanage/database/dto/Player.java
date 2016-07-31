@@ -35,19 +35,17 @@ import rx.functions.Func1;
 
   public abstract String rank();
 
-  public static final Func1<Cursor, Player> MAPPER = new Func1<Cursor, Player>() {
-    @Override public Player call(Cursor cursor) {
-      long id = Db.getLong(cursor, ID);
-      String firstName = Db.getString(cursor, FIRST_NAME);
-      String lastName = Db.getString(cursor, LAST_NAME);
-      String firstNamePhonetic = Db.getString(cursor, FIRST_NAME_PHONETIC);
-      String lastNamePhonetic = Db.getString(cursor, LAST_NAME_PHONETIC);
-      int sex = Db.getInt(cursor, SEX);
-      String memo = Db.getString(cursor, MEMO);
-      String rank = Db.getString(cursor, RANK);
-      return new AutoValue_Player(id, firstName, lastName, firstNamePhonetic, lastNamePhonetic, sex,
-          memo, rank);
-    }
+  public static final Func1<Cursor, Player> MAPPER = cursor -> {
+    long id = Db.getLong(cursor, ID);
+    String firstName = Db.getString(cursor, FIRST_NAME);
+    String lastName = Db.getString(cursor, LAST_NAME);
+    String firstNamePhonetic = Db.getString(cursor, FIRST_NAME_PHONETIC);
+    String lastNamePhonetic = Db.getString(cursor, LAST_NAME_PHONETIC);
+    int sex = Db.getInt(cursor, SEX);
+    String memo = Db.getString(cursor, MEMO);
+    String rank = Db.getString(cursor, RANK);
+    return new AutoValue_Player(id, firstName, lastName, firstNamePhonetic, lastNamePhonetic, sex,
+        memo, rank);
   };
 
   public static final class Builder {

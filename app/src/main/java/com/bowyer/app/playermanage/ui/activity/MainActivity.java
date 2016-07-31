@@ -26,7 +26,6 @@ import com.bowyer.app.playermanage.AnalyticsTracker;
 import com.bowyer.app.playermanage.PlayerApplication;
 import com.bowyer.app.playermanage.R;
 import com.bowyer.app.playermanage.database.dao.PlayerDao;
-import com.bowyer.app.playermanage.database.dto.Player;
 import com.bowyer.app.playermanage.database.dto.Rank;
 import com.bowyer.app.playermanage.database.dto.Sex;
 import com.bowyer.app.playermanage.gcm.GrowthPush;
@@ -184,11 +183,10 @@ public class MainActivity extends AppCompatActivity
     Sex sex = getCheckedSex(mSexGroup.getCheckedRadioButtonId());
     Rank rank = Rank.of(mRankText.getText().toString());
     PlayerDao.PlayerQuery playerQuery =
-        new PlayerDao.SQLBuilder().name(name).sex(sex).rank(rank).build();
-    mSubscription = (PlayerDao.getPlayerByQuery(mDb, playerQuery)
-        .mapToList(Player.MAPPER)
+        PlayerDao.SQLBuilder.with().name(name).sex(sex).rank(rank).build();
+    mSubscription = PlayerDao.getPlayersByQuery(mDb, playerQuery)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(mAdapter));
+        .subscribe(mAdapter);
   }
 
   private Sex getCheckedSex(@IdRes int checkedSex) {
