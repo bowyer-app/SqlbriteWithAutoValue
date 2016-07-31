@@ -49,45 +49,45 @@ import rx.functions.Func1;
         memo, rank);
   };
 
-  public static final class Builder {
+  public static final class ContentsBuilder {
     private final ContentValues values = new ContentValues();
 
-    public Builder id(long id) {
+    public ContentsBuilder id(long id) {
       values.put(ID, id);
       return this;
     }
 
-    public Builder firstName(String firstName) {
+    public ContentsBuilder firstName(String firstName) {
       values.put(FIRST_NAME, firstName);
       return this;
     }
 
-    public Builder lastName(String lastName) {
+    public ContentsBuilder lastName(String lastName) {
       values.put(LAST_NAME, lastName);
       return this;
     }
 
-    public Builder firstNamePhonetic(String firstNamePhonetic) {
+    public ContentsBuilder firstNamePhonetic(String firstNamePhonetic) {
       values.put(FIRST_NAME_PHONETIC, firstNamePhonetic);
       return this;
     }
 
-    public Builder lastNamePhonetic(String lastNamePhonetic) {
+    public ContentsBuilder lastNamePhonetic(String lastNamePhonetic) {
       values.put(LAST_NAME_PHONETIC, lastNamePhonetic);
       return this;
     }
 
-    public Builder sex(int sex) {
+    public ContentsBuilder sex(int sex) {
       values.put(SEX, sex);
       return this;
     }
 
-    public Builder memo(String memo) {
+    public ContentsBuilder memo(String memo) {
       values.put(MEMO, memo);
       return this;
     }
 
-    public Builder rank(String rank) {
+    public ContentsBuilder rank(String rank) {
       values.put(RANK, rank);
       return this;
     }
