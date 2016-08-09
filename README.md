@@ -2,6 +2,20 @@
 This project is example of Android app with sqlbrite and AutoValue and AutoValueExtensions and famous libraries.
 The code is part of the KyudoScoreBookTeam.
 
+# Libraries
+- sqlbrite - https://github.com/square/sqlbrite
+- auto-value - https://github.com/google/auto/tree/master/value
+- auto-value-parcel - https://github.com/rharter/auto-value-parcel
+- auto-value-cursor - https://github.com/gabrielittner/auto-value-cursor
+- auto-value-cursor-annotations - https://github.com/gabrielittner/auto-value-cursor
+- RxJava - https://github.com/ReactiveX/RxJava
+- RxAndroid - https://github.com/ReactiveX/RxAndroid
+- retrolambda - https://github.com/orfjackal/retrolambda
+- javapoet - https://github.com/square/javapoet
+- dagger - https://github.com/google/dagger
+- butterknife - https://github.com/JakeWharton/butterknife
+- ExpandableLayout - https://github.com/AAkira/ExpandableLayout
+- LicenseAdapter - https://github.com/yshrsmz/LicenseAdapter
 
 [![CircleCI](https://circleci.com/gh/bowyer-app/PlayerManage/tree/develop.svg?style=svg)](https://circleci.com/gh/bowyer-app/PlayerManage/tree/develop)
 
