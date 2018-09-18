@@ -22,9 +22,6 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          name: Decrypt google-services.json
-          command: openssl aes-256-cbc -k $DECRYPT_KEY -d -in app/encrypted_google-services.json -out app/google-services.json -md md5
-      - run:
           name: Check licenses
           command: ./gradlew :app:checkLicenses
       - run:
