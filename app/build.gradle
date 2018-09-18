@@ -113,16 +113,16 @@ android {
 
 dependencies {
   // Google Support
-  compile 'com.android.support:appcompat-v7:23.3.0'
-  compile 'com.android.support:support-v4:23.1.1'
-  compile 'com.android.support:recyclerview-v7:23.1.1'
-  compile 'com.android.support:design:23.1.1'
+  compile 'com.android.support:appcompat-v7:27.1.1'
+  compile 'com.android.support:support-v4:27.1.1'
+  compile 'com.android.support:recyclerview-v7:27.1.1'
+  compile 'com.android.support:design:27.1.1'
   compile 'com.android.support:multidex:1.0.1'
 
   // Google
   compile 'com.google.android.gms:play-services-base:8.4.0'
   compile 'com.google.android.gms:play-services-analytics:8.4.0'
-  compile 'com.google.android.gms:play-services-gcm:8.4.0'
+  compile 'com.google.android.gms:play-services-gcm:15.0.1'
   compile 'com.google.android.gms:play-services-plus:8.4.0'
 
   // Push
