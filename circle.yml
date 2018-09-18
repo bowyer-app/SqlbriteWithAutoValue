@@ -65,8 +65,8 @@ jobs:
           name: Build apk
           command: ./gradlew assembleRelease
       - store_artifacts:
-          path: app/build/outputs/apk/app-release.apk
-          destination: app-release.apk
+          path: app/build/outputs/apk/
+          destination: apk
       - store_artifacts:
           path: ./app/build/outputs/mapping/release/dump.txt
           destination: dump.txt
