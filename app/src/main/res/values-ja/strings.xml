@@ -1,5 +1,7 @@
 <resources>
 
+  <string name="app_name">PlayerManage</string>
+
   <!-- PlayerManage-->
   <string name="title_player_manage">選手管理</string>
   <string name="hint_first_name">名前</string>
