@@ -34,28 +34,6 @@ jobs:
           paths:
             - .
 
-  check:
-    working_directory: ~/code
-    docker:
-      - image: circleci/ruby:2.4.1
-    steps:
-      - attach_workspace:
-          at: ~/code
-      - restore_cache:
-          key: saddler-gems-{{ checksum "Gemfile.lock" }}
-      - run: bundle install --path vendor/bundle
-      - run:
-          name: Run saddler
-          command: sh scripts/saddler.sh
-          environment:
-              CIRCLE_ARTIFACTS: "/tmp/circle_artifacts"
-      - save_cache:
-          paths:
-            - vendor/bundle
-          key: saddler-gems-{{ checksum "Gemfile.lock" }}
-      - store_artifacts:
-          path: "/tmp/circle_artifacts"
-
   deploy:
     <<: *defaults
     steps:
@@ -81,7 +59,6 @@ workflows:
       - deploy:
           requires:
             - build
-            - check
           filters:
             branches:
               - /hotfix/.*/
