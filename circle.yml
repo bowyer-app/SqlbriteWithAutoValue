@@ -9,8 +9,6 @@ jobs:
       ANDROID_HOME: /usr/local/android-sdk-linux
     docker:
     - image: circleci/android:api-28-alpha
-      environment:
-          TZ: "/usr/share/zoneinfo/Asia/Tokyo"
     steps:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
