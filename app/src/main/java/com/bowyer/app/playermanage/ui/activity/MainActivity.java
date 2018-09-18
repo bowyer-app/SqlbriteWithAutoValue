@@ -233,6 +233,10 @@ public class MainActivity extends AppCompatActivity
     LicenseActivity.startActivity(this);
   }
 
+  @OnClick(R.id.privacy) void onClickPrivacy(){
+    WebViewActivity.startWebViewActivity(this,"https://kyudo-bowyer.com/?p=656");
+  }
+
   @Override public void onRankSelect(String rank) {
     if (!TextUtils.isEmpty(rank)) {
       mRankText.setText(rank);
