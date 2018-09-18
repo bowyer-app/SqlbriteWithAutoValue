@@ -27,6 +27,11 @@ android {
     versionCode 3
     versionName "1.0.1"
     multiDexEnabled true
+    javaCompileOptions {
+      annotationProcessorOptions {
+        includeCompileClasspath false
+      }
+    }
   }
 
   dexOptions {
