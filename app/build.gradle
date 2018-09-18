@@ -18,13 +18,13 @@ repositories {
 
 
 android {
-  compileSdkVersion 23
-  buildToolsVersion "23.0.3"
+  compileSdkVersion 27
+  buildToolsVersion "27.0.3"
 
   defaultConfig {
     applicationId "com.bowyer.app.playermanage"
     minSdkVersion 17
-    targetSdkVersion 23
+    targetSdkVersion 27
     versionCode 3
     versionName "1.0.1"
     multiDexEnabled true
