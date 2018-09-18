@@ -70,6 +70,9 @@ jobs:
       - store_artifacts:
           path: ./app/build/outputs/mapping/release/dump.txt
           destination: dump.txt
+      - run:
+          name: copy apk
+          command: - cp -R ./app/build/outputs/apk/*.apk $CIRCLE_ARTIFACTS
 workflows:
   version: 2
   build_and_deploy:
