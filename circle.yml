@@ -37,25 +37,33 @@ jobs:
     - run: echo "Nothing to do here"
     - store_test_results:
         path: /tmp/circleci-test-results
-product-assemble:
-  <<: *defaults
-  steps:
-    - checkout
-    - *restore-cache
-    - run:
-        name: assemble product apks
-        command: ./gradlew assembleProductDebug
-    - store_artifacts:
-        path: ./SqlbriteWithAutoValue/build/outputs/apk/
-        destination: apk
-    - run:
-        name: store apk to $CIRCLE_ARTIFACTS
-        command: |
-          mkdir $CIRCLE_ARTIFACTS/apk
-          cp ./SqlbriteWithAutoValue/build/outputs/apk/*.apk $CIRCLE_ARTIFACTS/apk
-    - *persist_stat_workspace        
-    # Save artifacts
-    - store_artifacts:
-        path: /tmp/circleci-artifacts
-    - store_artifacts:
-        path: /tmp/circleci-test-results
+jobs:
+  prebuilt:
+    <<: *defaults
+    steps:
+      - checkout
+      - *restore-cache
+      - run:
+          name: install dependencies (with annotation)
+          command: ./gradlew extractReleaseAnnotations
+      - run:
+          name: install dependencies (rest of all)
+          command: ./gradlew androidDependencies
+      - *save-cache        
+  product-assemble:
+    <<: *defaults
+    steps:
+      - checkout
+      - *restore-cache
+      - run:
+          name: assemble product apks
+          command: ./gradlew assembleProductDebug
+      - store_artifacts:
+          path: ./SqlbriteWithAutoValue/build/outputs/apk/
+          destination: apk
+      - run:
+          name: store apk to $CIRCLE_ARTIFACTS
+          command: |
+            mkdir $CIRCLE_ARTIFACTS/apk
+            cp ./SqlbriteWithAutoValue/build/outputs/apk/*.apk $CIRCLE_ARTIFACTS/apk
+      - *persist_stat_workspace        
