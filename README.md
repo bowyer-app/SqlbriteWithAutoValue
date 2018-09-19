@@ -17,7 +17,7 @@ The code is part of the KyudoScoreBookTeam.
 - ExpandableLayout - https://github.com/AAkira/ExpandableLayout
 - LicenseAdapter - https://github.com/yshrsmz/LicenseAdapter
 
-[![CircleCI](https://circleci.com/gh/bowyer-app/PlayerManage/tree/develop.svg?style=svg)](https://circleci.com/gh/bowyer-app/PlayerManage/tree/develop)
+[![CircleCI](https://circleci.com/gh/bowyer-app/SqlbriteWithAutoValue/tree/develop.svg?style=svg)](https://circleci.com/gh/bowyer-app/SqlbriteWithAutoValue/tree/develop)
 
 <a href="https://github.com/bowyer-app/PlayerManage/blob/fix/readme/img/origin.png" target="_blank"><img src="https://github.com/bowyer-app/PlayerManage/blob/fix/readme/img/origin.png" alt="KyudoScoreTeam" width="20%;"></a>
 
