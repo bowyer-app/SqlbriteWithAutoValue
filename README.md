@@ -13,11 +13,9 @@ The code is part of the KyudoScoreBookTeam.
 - retrolambda - https://github.com/orfjackal/retrolambda
 - javapoet - https://github.com/square/javapoet
 - dagger - https://github.com/google/dagger
-- butterknife - https://github.com/JakeWharton/butterknife
 - ExpandableLayout - https://github.com/AAkira/ExpandableLayout
 - LicenseAdapter - https://github.com/yshrsmz/LicenseAdapter
 
-[![CircleCI](https://circleci.com/gh/bowyer-app/SqlbriteWithAutoValue/tree/develop.svg?style=svg)](https://circleci.com/gh/bowyer-app/SqlbriteWithAutoValue/tree/develop)
 
 <a href="https://github.com/bowyer-app/PlayerManage/blob/fix/readme/img/origin.png" target="_blank"><img src="https://github.com/bowyer-app/PlayerManage/blob/fix/readme/img/origin.png" alt="KyudoScoreTeam" width="20%;"></a>
 

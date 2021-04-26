@@ -1,118 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary"
-    android:orientation="vertical"
-    >
-  <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-      android:id="@+id/expand_linear"
+<layout>
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      app:ael_duration="250"
-      app:ael_expanded="false"
-      app:ael_interpolator="fastOutSlowIn"
-      app:ael_orientation="vertical"
+      android:background="?attr/colorPrimary"
+      android:orientation="vertical"
       >
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/expand_action_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:background="@drawable/app_dark_blue"
+        >
+      <ImageView
+          android:id="@+id/ic_up"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_centerVertical="true"
+          android:layout_marginRight="16dp"
+          android:rotationX="180"
+          android:src="@drawable/ic_arrow_up_white"
+          />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:focusable="true"
+          android:focusableInTouchMode="true"
+          android:text="@string/search_tool"
+          style="@style/SearchToolText"
+          />
+    </RelativeLayout>
+    <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+        android:id="@+id/expand_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ael_duration="250"
+        app:ael_expanded="false"
+        app:ael_interpolator="fastOutSlowIn"
+        app:ael_orientation="vertical"
         >
       <LinearLayout
-          android:id="@+id/rank"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:background="@drawable/app_dark_blue"
-          android:orientation="horizontal"
+          android:orientation="vertical"
           >
-        <TextView
-            android:layout_width="wrap_content"
-            android:background="@null"
-            android:text="@string/player_rank"
-            style="@style/DataEditItem"
-            />
-        <TextView
-            android:id="@+id/rank_text"
-            android:layout_width="wrap_content"
-            android:gravity="center"
-            android:text="@string/player_rank_all"
-            style="@style/DataEditItem"
-            />
-      </LinearLayout>
-      <View style="@style/item_setting_border"/>
-      <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="@drawable/app_dark_blue"
-          >
-        <TextView
-            android:id="@+id/sex_title"
-            android:layout_width="wrap_content"
-            android:background="@null"
-            android:text="@string/player_title"
-            style="@style/DataEditItem"
-            />
-        <RadioGroup
-            android:id="@+id/sex_group"
+        <LinearLayout
+            android:id="@+id/rank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/sex_title"
             android:background="@drawable/app_dark_blue"
             android:orientation="horizontal"
             >
-          <RadioButton
-              android:id="@+id/sex_all_rdb"
+          <TextView
               android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:checked="true"
-              android:text="@string/player_all"
-              style="@style/PlayerRadioButton"
+              android:background="@null"
+              android:text="@string/player_rank"
+              style="@style/DataEditItem"
               />
-          <RadioButton
-              android:id="@+id/sex_male_rdb"
+          <TextView
+              android:id="@+id/rank_text"
               android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/player_male"
-              style="@style/PlayerRadioButton"
+              android:gravity="center"
+              android:text="@string/player_rank_all"
+              style="@style/DataEditItem"
               />
-          <RadioButton
-              android:id="@+id/sex_female_rdb"
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/app_dark_blue"
+            >
+          <RadioGroup
+              android:id="@+id/sex_group"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_centerVertical="true"
+              android:layout_toRightOf="@+id/sex_title"
+              android:background="@drawable/app_dark_blue"
+              android:orientation="horizontal"
+              >
+            <RadioButton
+                android:id="@+id/sex_all_rdb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/player_all"
+                style="@style/PlayerRadioButton"
+                />
+            <RadioButton
+                android:id="@+id/sex_male_rdb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/player_male"
+                style="@style/PlayerRadioButton"
+                />
+            <RadioButton
+                android:id="@+id/sex_female_rdb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/player_female"
+                style="@style/PlayerRadioButton"
+                />
+          </RadioGroup>
+          <TextView
+              android:id="@+id/sex_title"
               android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/player_female"
-              style="@style/PlayerRadioButton"
+              android:background="@null"
+              android:text="@string/player_title"
+              style="@style/DataEditItem"
               />
-        </RadioGroup>
-      </RelativeLayout>
-      <View style="@style/item_setting_border"/>
-    </LinearLayout>
-  </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
-  <RelativeLayout
-      android:id="@+id/expand_action_button"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@drawable/app_dark_blue"
-      >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:text="@string/search_tool"
-        style="@style/SearchToolText"
-        />
-    <ImageView
-        android:id="@+id/ic_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="16dp"
-        android:rotationX="180"
-        android:src="@drawable/ic_arrow_up_white"
-        />
-  </RelativeLayout>
-</LinearLayout>
+        </RelativeLayout>
+        <View style="@style/item_setting_border" />
+        <View style="@style/item_setting_border" />
+      </LinearLayout>
+    </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+  </LinearLayout>
+</layout>

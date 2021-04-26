@@ -1,63 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_marginBottom="5dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginTop="5dp"
-    android:background="@drawable/app_white"
-    android:orientation="horizontal"
-    >
-  <TextView
-      android:id="@+id/initial"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_margin="4dp"
-      android:background="@drawable/male_initial"
-      android:gravity="center"
-      android:textColor="@color/white"
-      android:textSize="16sp"
-      />
+<layout>
   <LinearLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/root_view"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:orientation="vertical"
+      android:layout_gravity="center"
+      android:layout_marginBottom="5dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
+      android:layout_marginTop="5dp"
+      android:background="@drawable/app_white"
+      android:orientation="horizontal"
       >
+    <TextView
+        android:id="@+id/initial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/male_initial"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         >
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          >
+        <TextView
+            android:id="@+id/last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:id="@+id/first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            />
+      </LinearLayout>
       <TextView
-          android:id="@+id/last_name"
+          android:id="@+id/rank_text"
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
           android:gravity="center_vertical"
           android:textColor="@color/black"
-          android:textSize="14sp"
-          />
-      <TextView
-          android:id="@+id/first_name"
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:layout_marginLeft="4dp"
-          android:gravity="center_vertical"
-          android:textColor="@color/black"
-          android:textSize="14sp"
+          android:textSize="12sp"
           />
     </LinearLayout>
-    <TextView
-        android:id="@+id/rank_text"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        />
-  </LinearLayout>
 
-</LinearLayout>
+  </LinearLayout>
+</layout>

@@ -1,19 +1,18 @@
 package com.bowyer.app.playermanage.ui.adapter;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.DataBindingUtil;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import com.bowyer.app.playermanage.R;
 import com.bowyer.app.playermanage.database.dto.Player;
 import com.bowyer.app.playermanage.database.dto.Sex;
+import com.bowyer.app.playermanage.databinding.PlayerListItemBinding;
 import com.bowyer.app.playermanage.ui.activity.PlayerManageActivity;
 import java.util.Collections;
 import java.util.List;
@@ -40,7 +39,9 @@ public class PlayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
   }
 
   @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View v = inflater.inflate(R.layout.player_list_item, parent, false);
+    PlayerListItemBinding v =
+        DataBindingUtil.inflate(inflater, R.layout.player_list_item,
+            parent, false);
     return new ViewHolder(v);
   }
 
@@ -48,14 +49,14 @@ public class PlayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     final ViewHolder holder = (ViewHolder) viewHolder;
     Player player = getItem(position);
     String lastNameText = player.lastName();
-    TextView initial = holder.mInitial;
+    TextView initial = holder.binding.initial;
 
     if (!TextUtils.isEmpty(lastNameText)) {
       initial.setText(lastNameText.substring(0, 1));
     }
-    holder.mFirstName.setText(player.firstName());
-    holder.mLastName.setText(lastNameText);
-    holder.mRank.setText(player.rank());
+    holder.binding.firstName.setText(player.firstName());
+    holder.binding.lastName.setText(lastNameText);
+    holder.binding.rankText.setText(player.rank());
 
     if (player.sex() == Sex.FEMALE.getSex()) {
       initial.setBackground(
@@ -72,20 +73,18 @@ public class PlayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
   class ViewHolder extends RecyclerView.ViewHolder {
 
-    @Bind(R.id.initial) TextView mInitial;
-    @Bind(R.id.first_name) TextView mFirstName;
-    @Bind(R.id.last_name) TextView mLastName;
-    @Bind(R.id.rank_text) TextView mRank;
+    private PlayerListItemBinding binding = null;
 
-    @OnClick(R.id.root_view) void onItemClick(View view) {
-      int position = getLayoutPosition();
-      Player player = getItem(position);
-      PlayerManageActivity.startActivity(view.getContext(), player);
-    }
-
-    public ViewHolder(View view) {
-      super(view);
-      ButterKnife.bind(this, view);
+    ViewHolder(PlayerListItemBinding binding) {
+      super(binding.getRoot());
+      this.binding = binding;
+      binding.rootView.setOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View view) {
+          int position = getLayoutPosition();
+          Player player = getItem(position);
+          PlayerManageActivity.startActivity(view.getContext(), player);
+        }
+      });
     }
   }
 }

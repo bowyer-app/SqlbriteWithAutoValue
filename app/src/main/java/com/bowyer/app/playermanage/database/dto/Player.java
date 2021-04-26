@@ -3,7 +3,7 @@ package com.bowyer.app.playermanage.database.dto;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import com.gabrielittner.auto.value.cursor.ColumnName;
 import com.google.auto.value.AutoValue;
 import rx.functions.Func1;
