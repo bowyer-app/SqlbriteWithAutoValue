@@ -11,18 +11,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import com.bowyer.app.playermanage.AnalyticsTracker;
 import com.bowyer.app.playermanage.PlayerApplication;
 import com.bowyer.app.playermanage.R;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 import net.yslibrary.licenseadapter.LicenseAdapter;
 import net.yslibrary.licenseadapter.LicenseEntry;
 import net.yslibrary.licenseadapter.Licenses;
 
 public class LicenseActivity extends AppCompatActivity {
-  @Inject AnalyticsTracker mAnalyticsTracker;
 
   @Bind(R.id.toolbar) Toolbar mToolbar;
   @Bind(R.id.recycler_view) RecyclerView mRecyclerView;
@@ -41,11 +38,6 @@ public class LicenseActivity extends AppCompatActivity {
     PlayerApplication.getComponent(this).inject(this);
   }
 
-  @Override protected void onStart() {
-    super.onStart();
-    mAnalyticsTracker.sendScreenView(this.getLocalClassName());
-  }
-
   public void initActionBar() {
     mToolbar.setTitle(getString(R.string.title_app_license));
     setSupportActionBar(mToolbar);
@@ -60,7 +52,6 @@ public class LicenseActivity extends AppCompatActivity {
     //Google
     licenses.add(Licenses.noContent("Android SDK", "Google Inc.",
         "https://developer.android.com/sdk/terms.html"));
-
 
     //DI
     licenses.add(Licenses.fromGitHub("google/dagger", Licenses.FILE_TXT));

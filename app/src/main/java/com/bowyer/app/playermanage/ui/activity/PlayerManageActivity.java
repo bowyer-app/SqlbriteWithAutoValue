@@ -16,7 +16,6 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.bowyer.app.playermanage.AnalyticsTracker;
 import com.bowyer.app.playermanage.PlayerApplication;
 import com.bowyer.app.playermanage.R;
 import com.bowyer.app.playermanage.database.dto.Player;
@@ -32,7 +31,6 @@ public class PlayerManageActivity extends AppCompatActivity
   public static final String KEY_PLAYER = "key_player";
 
   @Inject BriteDatabase mDb;
-  @Inject AnalyticsTracker mAnalyticsTracker;
 
   private Player mPlayer;
 
@@ -59,11 +57,6 @@ public class PlayerManageActivity extends AppCompatActivity
     ButterKnife.bind(this);
     initActionBar();
     initPlayer();
-  }
-
-  @Override protected void onResume() {
-    super.onResume();
-    mAnalyticsTracker.sendScreenView(this.getLocalClassName());
   }
 
   private void initActionBar() {
@@ -116,12 +109,8 @@ public class PlayerManageActivity extends AppCompatActivity
     }
     if (mPlayer == null) {
       insertPlayer();
-      mAnalyticsTracker.sendEvent(AnalyticsTracker.Category.DEFAULT,
-          AnalyticsTracker.Action.PLAYER_SAVE, "insert");
     } else {
       updatePlayer();
-      mAnalyticsTracker.sendEvent(AnalyticsTracker.Category.DEFAULT,
-          AnalyticsTracker.Action.PLAYER_SAVE, "update");
     }
   }
 

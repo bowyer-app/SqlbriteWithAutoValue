@@ -13,18 +13,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import com.bowyer.app.playermanage.AnalyticsTracker;
 import com.bowyer.app.playermanage.PlayerApplication;
 import com.bowyer.app.playermanage.R;
-import javax.inject.Inject;
 
 public class WebViewActivity extends AppCompatActivity
     implements SwipeRefreshLayout.OnRefreshListener {
 
   public static final String KEY_URL = "key_url";
   public static final String DEF_URL = "http://ameblo.jp/bowyer-app/";
-
-  @Inject AnalyticsTracker mAnalyticsTracker;
 
   @Bind(R.id.toolbar) Toolbar mToolbar;
   @Bind(R.id.swipe_layout) SwipeRefreshLayout mSwipeRefreshLayout;
@@ -46,11 +42,6 @@ public class WebViewActivity extends AppCompatActivity
     initWebView();
     initIntent();
     mSwipeRefreshLayout.setOnRefreshListener(this);
-  }
-
-  @Override protected void onStart() {
-    super.onStart();
-    mAnalyticsTracker.sendScreenView(this.getLocalClassName());
   }
 
   @Override protected void onResume() {

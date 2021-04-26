@@ -22,7 +22,6 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.bowyer.app.playermanage.AnalyticsTracker;
 import com.bowyer.app.playermanage.PlayerApplication;
 import com.bowyer.app.playermanage.R;
 import com.bowyer.app.playermanage.database.dao.PlayerDao;
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity
     implements ObservableScrollViewCallbacks, RankSelectDialogFragment.OnRankSelectListener {
 
   @Inject BriteDatabase mDb;
-  @Inject AnalyticsTracker mAnalyticsTracker;
 
   @Bind(R.id.toolbar) Toolbar mToolbar;
   @Bind(R.id.recycler_view) ObservableRecyclerView mRecyclerView;
@@ -73,8 +71,6 @@ public class MainActivity extends AppCompatActivity
     initRecyclerView();
     initSearchQuery();
     mSexGroup.setOnCheckedChangeListener((radioGroup, i) -> {
-      mAnalyticsTracker.sendEvent(AnalyticsTracker.Category.DEFAULT,
-          AnalyticsTracker.Action.PLAYER_SEX_TAP, getCheckedSex(i).name());
       doSearch();
     });
   }
@@ -87,7 +83,6 @@ public class MainActivity extends AppCompatActivity
 
   @Override protected void onStart() {
     super.onStart();
-    mAnalyticsTracker.sendScreenView(this.getLocalClassName());
     GrowthbeatLogic.start();
   }
 
@@ -147,8 +142,6 @@ public class MainActivity extends AppCompatActivity
   }
 
   @OnClick(R.id.expand_action_button) void headerTranslation() {
-    mAnalyticsTracker.sendEvent(AnalyticsTracker.Category.DEFAULT,
-        AnalyticsTracker.Action.EXPAND_SEARCH_PLAYER);
     mExpandableHeader.toggle();
     mExpandableHeader.setListener(new ExpandableLayoutListenerAdapter() {
       @Override public void onOpened() {
@@ -170,8 +163,7 @@ public class MainActivity extends AppCompatActivity
   }
 
   @OnClick(R.id.search_query_text) void searchQueryTextClick() {
-    mAnalyticsTracker.sendEvent(AnalyticsTracker.Category.DEFAULT,
-        AnalyticsTracker.Action.SEARCH_PLAYER_TAP);
+    // do nothing
   }
 
   @OnClick(R.id.search_query_delete) void deleteSearchQuery() {
@@ -221,8 +213,6 @@ public class MainActivity extends AppCompatActivity
 
   @OnClick(R.id.fab) void onClickAddPlayer() {
     PlayerManageActivity.startActivity(this, null);
-    mAnalyticsTracker.sendEvent(AnalyticsTracker.Category.DEFAULT,
-        AnalyticsTracker.Action.ADD_PLAYER_FAB_TAP);
   }
 
   @OnClick(R.id.rank) void onClickRank() {
@@ -233,8 +223,8 @@ public class MainActivity extends AppCompatActivity
     LicenseActivity.startActivity(this);
   }
 
-  @OnClick(R.id.privacy) void onClickPrivacy(){
-    WebViewActivity.startWebViewActivity(this,"https://kyudo-bowyer.com/?p=656");
+  @OnClick(R.id.privacy) void onClickPrivacy() {
+    WebViewActivity.startWebViewActivity(this, "https://kyudo-bowyer.com/?p=656");
   }
 
   @Override public void onRankSelect(String rank) {
