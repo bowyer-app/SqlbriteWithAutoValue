@@ -93,9 +93,6 @@ public class LicenseActivity extends AppCompatActivity {
     //Lambda
     licenses.add(Licenses.fromGitHub("orfjackal/retrolambda", Licenses.FILE_TXT));
 
-    //Crash
-    licenses.add(Licenses.noContent("Fabric", "Twitter", "https://fabric.io/terms"));
-
     LicenseAdapter adapter = new LicenseAdapter(licenses);
     mRecyclerView.setAdapter(adapter);
 

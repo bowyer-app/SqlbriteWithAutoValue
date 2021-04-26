@@ -42,9 +42,6 @@
         android:theme="@style/AppTheme.NoActionBar"/>
 
     <meta-data
-        android:name="io.fabric.ApiKey"
-        android:value="fd468741ae1b6b1421dbf1ae93231c7f66bc467b"/>
-    <meta-data
         android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version"/>
     <!--GCM-->
