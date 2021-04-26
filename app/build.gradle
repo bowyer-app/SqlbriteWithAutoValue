@@ -24,6 +24,10 @@ android {
     javaMaxHeapSize "4g"
   }
 
+  dataBinding {
+    enabled = true
+  }
+
   lintOptions {
     checkReleaseBuilds false;
   }
