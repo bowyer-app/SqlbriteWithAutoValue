@@ -6,7 +6,7 @@
       android:layout_height="match_parent"
       android:orientation="vertical"
       >
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -57,12 +57,12 @@
             android:src="@drawable/ic_setting"
             />
       </RelativeLayout>
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-      <android.support.design.widget.FloatingActionButton
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
           android:id="@+id/fab"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"

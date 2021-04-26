@@ -1,6 +1,6 @@
 package com.bowyer.app.playermanage.logic;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import com.bowyer.app.playermanage.preference.ReviewPreferences;
 import com.bowyer.app.playermanage.ui.dialog.GooglePlusDialogFragment;
 import com.bowyer.app.playermanage.ui.dialog.ReviewDialogFragment;
