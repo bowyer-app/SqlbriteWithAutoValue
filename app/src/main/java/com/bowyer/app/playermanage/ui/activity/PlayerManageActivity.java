@@ -2,24 +2,20 @@ package com.bowyer.app.playermanage.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.TextView;
+import android.view.View;
 import android.widget.Toast;
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import com.bowyer.app.playermanage.PlayerApplication;
 import com.bowyer.app.playermanage.R;
 import com.bowyer.app.playermanage.database.dto.Player;
 import com.bowyer.app.playermanage.database.dto.Sex;
+import com.bowyer.app.playermanage.databinding.ActivityPlayerManageBinding;
 import com.bowyer.app.playermanage.preference.ReviewPreferences;
 import com.bowyer.app.playermanage.ui.dialog.RankSelectDialogFragment;
 import com.squareup.sqlbrite.BriteDatabase;
@@ -34,15 +30,7 @@ public class PlayerManageActivity extends AppCompatActivity
 
   private Player mPlayer;
 
-  @Bind(R.id.toolbar) Toolbar mToolbar;
-  @Bind(R.id.first_name) EditText mFirstName;
-  @Bind(R.id.last_name) EditText mLastName;
-  @Bind(R.id.first_name_phonetic) EditText mFirstNamePhonetic;
-  @Bind(R.id.last_name_phonetic) EditText mLastNamePhonetic;
-  @Bind(R.id.memo) EditText mMemo;
-  @Bind(R.id.male_rdb) RadioButton mMaleRadioButton;
-  @Bind(R.id.female_rdb) RadioButton mFeMaleRadioButton;
-  @Bind(R.id.rank_text) TextView mRankText;
+  private ActivityPlayerManageBinding binding = null;
 
   public static void startActivity(Context context, Player player) {
     Intent intent = new Intent(context, PlayerManageActivity.class);
@@ -52,18 +40,22 @@ public class PlayerManageActivity extends AppCompatActivity
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_player_manage);
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_player_manage);
     PlayerApplication.getComponent(getApplicationContext()).inject(this);
-    ButterKnife.bind(this);
     initActionBar();
     initPlayer();
+    binding.rank.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View view) {
+        onClickRank();
+      }
+    });
   }
 
   private void initActionBar() {
-    mToolbar.setTitle(getString(R.string.title_player_manage));
-    setSupportActionBar(mToolbar);
+    binding.toolbar.setTitle(getString(R.string.title_player_manage));
+    setSupportActionBar(binding.toolbar);
     getSupportActionBar().setDisplayShowHomeEnabled(true);
-    mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+    binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,21 +81,22 @@ public class PlayerManageActivity extends AppCompatActivity
     if (mPlayer == null) {
       return;
     }
-    mFirstName.setText(mPlayer.firstName());
-    mLastName.setText(mPlayer.lastName());
-    mFirstNamePhonetic.setText(mPlayer.firstNamePhonetic());
-    mLastNamePhonetic.setText(mPlayer.lastNamePhonetic());
-    mMemo.setText(mPlayer.memo());
-    mRankText.setText(mPlayer.rank());
+
+    binding.firstName.setText(mPlayer.firstName());
+    binding.lastName.setText(mPlayer.lastName());
+    binding.firstNamePhonetic.setText(mPlayer.firstNamePhonetic());
+    binding.lastNamePhonetic.setText(mPlayer.lastNamePhonetic());
+    binding.memo.setText(mPlayer.memo());
+    binding.rankText.setText(mPlayer.rank());
     if (mPlayer.sex() == Sex.MALE.getSex()) {
-      mMaleRadioButton.setChecked(true);
+      binding.maleRdb.setChecked(true);
     } else {
-      mFeMaleRadioButton.setChecked(true);
+      binding.femaleRdb.setChecked(true);
     }
   }
 
   private void onClickSave() {
-    if (TextUtils.isEmpty(mLastName.getText().toString())) {
+    if (TextUtils.isEmpty(binding.lastName.getText().toString())) {
       Toast.makeText(this, getString(R.string.message_need_first_name), Toast.LENGTH_SHORT).show();
       return;
     }
@@ -114,42 +107,44 @@ public class PlayerManageActivity extends AppCompatActivity
     }
   }
 
-  @OnClick(R.id.rank) void onClickRank() {
+  private void onClickRank() {
     RankSelectDialogFragment.newInstance().show(getSupportFragmentManager(), "");
   }
 
   private void updatePlayer() {
-    int sex = mMaleRadioButton.isChecked() ? Sex.MALE.getSex() : Sex.FEMALE.getSex();
-    mDb.update(Player.TABLE, new Player.ContentsBuilder().firstName(mFirstName.getText().toString())
-        .lastName(mLastName.getText().toString())
-        .firstNamePhonetic(mFirstNamePhonetic.getText().toString())
-        .lastNamePhonetic(mLastNamePhonetic.getText().toString())
-        .sex(sex)
-        .memo(mMemo.getText().toString())
-        .rank(mRankText.getText().toString())
-        .build(), Player.ID + " = ?", String.valueOf(mPlayer.id()));
+    int sex = binding.maleRdb.isChecked() ? Sex.MALE.getSex() : Sex.FEMALE.getSex();
+    mDb.update(Player.TABLE,
+        new Player.ContentsBuilder().firstName(binding.firstName.getText().toString())
+            .lastName(binding.lastName.getText().toString())
+            .firstNamePhonetic(binding.firstNamePhonetic.getText().toString())
+            .lastNamePhonetic(binding.lastNamePhonetic.getText().toString())
+            .sex(sex)
+            .memo(binding.memo.getText().toString())
+            .rank(binding.rankText.getText().toString())
+            .build(), Player.ID + " = ?", String.valueOf(mPlayer.id()));
     finish();
   }
 
   private void insertPlayer() {
-    int sex = mMaleRadioButton.isChecked() ? Sex.MALE.getSex() : Sex.FEMALE.getSex();
-    mDb.insert(Player.TABLE, new Player.ContentsBuilder().firstName(mFirstName.getText().toString())
-        .lastName(mLastName.getText().toString())
-        .firstNamePhonetic(mFirstNamePhonetic.getText().toString())
-        .lastNamePhonetic(mLastNamePhonetic.getText().toString())
-        .sex(sex)
-        .memo(mMemo.getText().toString())
-        .rank(mRankText.getText().toString())
-        .build());
+    int sex = binding.maleRdb.isChecked() ? Sex.MALE.getSex() : Sex.FEMALE.getSex();
+    mDb.insert(Player.TABLE,
+        new Player.ContentsBuilder().firstName(binding.firstName.getText().toString())
+            .lastName(binding.lastName.getText().toString())
+            .firstNamePhonetic(binding.firstNamePhonetic.getText().toString())
+            .lastNamePhonetic(binding.lastNamePhonetic.getText().toString())
+            .sex(sex)
+            .memo(binding.memo.getText().toString())
+            .rank(binding.rankText.getText().toString())
+            .build());
     finish();
     new ReviewPreferences(this).increasePlayerSaveCount();
   }
 
   @Override public void onRankSelect(String rank) {
     if (!TextUtils.isEmpty(rank)) {
-      mRankText.setText(rank);
+      binding.rankText.setText(rank);
     } else {
-      mRankText.setText(getString(R.string.player_no_rank));
+      binding.rankText.setText(getString(R.string.player_no_rank));
     }
   }
 }

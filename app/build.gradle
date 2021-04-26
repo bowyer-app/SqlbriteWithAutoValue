@@ -122,9 +122,6 @@ dependencies {
   annotationProcessor 'com.google.dagger:dagger-compiler:2.6'
   provided 'javax.annotation:jsr250-api:1.0'
 
-  // Injection
-  implementation 'com.jakewharton:butterknife:7.0.1'
-
   // UI
   implementation 'com.github.ksoichiro:android-observablescrollview:1.5.0'
   implementation 'com.github.aakira:expandable-layout:1.5.1@aar'

@@ -13,7 +13,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import butterknife.ButterKnife;
 import com.bowyer.app.playermanage.PlayerApplication;
 import com.bowyer.app.playermanage.R;
 import com.bowyer.app.playermanage.database.dao.PlayerDao;
@@ -46,7 +45,6 @@ public class MainActivity extends AppCompatActivity
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     binding = DataBindingUtil.setContentView(this, R.layout.activity_player_search);
-    ButterKnife.bind(this);
     PlayerApplication.getComponent(getApplicationContext()).inject(this);
     GrowthPushLogic.initGrowthPushSetting(this, getIntent());
     launchWebIfHasGrowthPush();
@@ -80,7 +78,6 @@ public class MainActivity extends AppCompatActivity
       return;
     }
     mSubscription.unsubscribe();
-    ButterKnife.unbind(this);
   }
 
   private void init() {

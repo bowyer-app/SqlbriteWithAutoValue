@@ -13,7 +13,6 @@ The code is part of the KyudoScoreBookTeam.
 - retrolambda - https://github.com/orfjackal/retrolambda
 - javapoet - https://github.com/square/javapoet
 - dagger - https://github.com/google/dagger
-- butterknife - https://github.com/JakeWharton/butterknife
 - ExpandableLayout - https://github.com/AAkira/ExpandableLayout
 - LicenseAdapter - https://github.com/yshrsmz/LicenseAdapter
 

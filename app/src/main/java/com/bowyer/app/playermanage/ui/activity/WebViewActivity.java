@@ -2,29 +2,26 @@ package com.bowyer.app.playermanage.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import com.bowyer.app.playermanage.PlayerApplication;
 import com.bowyer.app.playermanage.R;
+import com.bowyer.app.playermanage.databinding.ActivityWebviewBinding;
 
 public class WebViewActivity extends AppCompatActivity
     implements SwipeRefreshLayout.OnRefreshListener {
 
   public static final String KEY_URL = "key_url";
-  public static final String DEF_URL = "http://ameblo.jp/bowyer-app/";
+  public static final String DEF_URL = "https://ameblo.jp/bowyer-app/";
 
-  @Bind(R.id.toolbar) Toolbar mToolbar;
-  @Bind(R.id.swipe_layout) SwipeRefreshLayout mSwipeRefreshLayout;
-  @Bind(R.id.web_view) WebView mWebView;
+  private ActivityWebviewBinding binding = null;
 
   public static void startWebViewActivity(final Context context, final String url) {
     Intent intent = new Intent(context, WebViewActivity.class);
@@ -34,25 +31,24 @@ public class WebViewActivity extends AppCompatActivity
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_webview);
-    ButterKnife.bind(this);
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_webview);
     PlayerApplication.getComponent(this).inject(this);
 
     initActionBar();
     initWebView();
     initIntent();
-    mSwipeRefreshLayout.setOnRefreshListener(this);
+    binding.swipeLayout.setOnRefreshListener(this);
   }
 
   @Override protected void onResume() {
     super.onResume();
-    mWebView.onResume();
-    mWebView.resumeTimers();
+    binding.webView.onResume();
+    binding.webView.resumeTimers();
   }
 
   @Override protected void onPause() {
     super.onPause();
-    mWebView.onPause();
+    binding.webView.onPause();
   }
 
   public boolean onOptionsItemSelected(MenuItem item) {
@@ -65,52 +61,52 @@ public class WebViewActivity extends AppCompatActivity
   }
 
   private void initActionBar() {
-    mToolbar.setTitle("");
-    setSupportActionBar(mToolbar);
+    binding.toolbar.setTitle("");
+    setSupportActionBar(binding.toolbar);
     getSupportActionBar().setDisplayShowHomeEnabled(true);
-    mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+    binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
   }
 
   private void initIntent() {
     final Intent intent = getIntent();
     String url = intent.getExtras().getString(KEY_URL, DEF_URL);
-    mWebView.loadUrl(url);
+    binding.webView.loadUrl(url);
   }
 
   private void setTitle(final String title) {
     if (TextUtils.isEmpty(title)) {
       return;
     }
-    mToolbar.setTitle(title);
+    binding.toolbar.setTitle(title);
   }
 
   private void initWebView() {
-    mWebView.getSettings().setJavaScriptEnabled(true);
-    mWebView.getSettings().setDomStorageEnabled(true);
-    mWebView.getSettings().setUseWideViewPort(true);
-    mWebView.setWebViewClient(new WebViewClient() {
+    binding.webView.getSettings().setJavaScriptEnabled(true);
+    binding.webView.getSettings().setDomStorageEnabled(true);
+    binding.webView.getSettings().setUseWideViewPort(true);
+    binding.webView.setWebViewClient(new WebViewClient() {
 
       @Override public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
         final String title = view.getTitle();
         setTitle(title);
-        mSwipeRefreshLayout.setRefreshing(false);
+        binding.swipeLayout.setRefreshing(false);
       }
 
       @Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
-        mSwipeRefreshLayout.setRefreshing(true);
+        binding.swipeLayout.setRefreshing(true);
       }
     });
   }
 
   @Override public void onRefresh() {
-    mWebView.reload();
+    binding.webView.reload();
   }
 
   @Override public void onBackPressed() {
-    if (mWebView.canGoBack()) {
-      mWebView.goBack();
+    if (binding.webView.canGoBack()) {
+      binding.webView.goBack();
       return;
     }
     super.onBackPressed();
