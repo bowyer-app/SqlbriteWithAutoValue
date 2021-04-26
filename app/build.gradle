@@ -7,7 +7,7 @@ android {
 
   defaultConfig {
     applicationId "com.bowyer.app.playermanage"
-    minSdkVersion 17
+    minSdkVersion 21
     targetSdkVersion 27
     versionCode 3
     versionName "1.0.1"
@@ -102,7 +102,6 @@ dependencies {
   compile 'com.android.support:support-v4:27.1.1'
   compile 'com.android.support:recyclerview-v7:27.1.1'
   compile 'com.android.support:design:27.1.1'
-  compile 'com.android.support:multidex:1.0.1'
 
   // Google
   compile 'com.google.android.gms:play-services-base:8.4.0'
